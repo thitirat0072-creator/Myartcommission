@@ -45,7 +45,7 @@ header{
 }
 .city-bar{
   display:flex;gap:2.5rem;
-  font-size:11px;letter-spacing:.2em;color:var(--knight);
+  font-size:16px;letter-spacing:.2em;color:var(--knight);
   margin-bottom:2.5rem;
 }
 .city-bar span::before{content:'(';color:var(--red-bright)}
@@ -58,7 +58,7 @@ header{
 }
 header h1{
   font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(64px,12vw,110px);
+  font-size:clamp(69px,12vw,115px);
   line-height:.9;
   letter-spacing:.02em;
   color:var(--mist);
@@ -71,7 +71,7 @@ header h1 em{
 }
 .header-manifesto{
   max-width:280px;
-  font-size:10px;
+  font-size:15px;
   line-height:1.8;
   color:var(--knight);
   letter-spacing:.06em;
@@ -80,7 +80,7 @@ header h1 em{
   padding-left:1rem;
 }
 .status-line{
-  font-size:15px;letter-spacing:.15em;color:var(--red-bright);
+  font-size:20px;letter-spacing:.15em;color:var(--red-bright);
   text-transform:uppercase;margin-bottom:.5rem;
   display:flex;align-items:center;gap:10px;
 }
@@ -94,7 +94,7 @@ header h1 em{
 .tab-btn{
   flex:1;padding:16px;
   font-family:'JetBrains Mono', 'Kanit', sans-serif;
-  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:16px;letter-spacing:.15em;text-transform:uppercase;
   background:transparent;border:none;color:var(--knight);
   cursor:pointer;transition:all .2s;
   border-bottom:2px solid transparent;
@@ -117,7 +117,7 @@ main{
 
 /* SECTION LABEL */
 .sec-label{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--red-bright);margin-bottom:1.25rem;
   display:flex;align-items:center;gap:12px;
 }
@@ -135,7 +135,7 @@ main{
 .field:last-child{margin-bottom:0}
 .field label{
   display:block;
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--knight);margin-bottom:8px;
 }
 .field label .req{color:var(--red-bright);margin-left:2px}
@@ -145,7 +145,7 @@ main{
   background:var(--void);
   border:1px solid var(--border-light);
   font-family:'JetBrains Mono', 'Kanit', sans-serif;
-  font-size:13px;color:var(--mist);
+  font-size:18px;color:var(--mist);
   outline:none;
   transition:border-color .15s;
   -webkit-appearance:none;appearance:none;
@@ -153,9 +153,9 @@ main{
 .field input:focus,.field select:focus,.field textarea:focus{
   border-color:var(--red-bright);
 }
-.field input::placeholder,.field textarea::placeholder{color:var(--knight-dark);font-size:12px}
+.field input::placeholder,.field textarea::placeholder{color:var(--knight-dark);font-size:17px}
 .field textarea{resize:vertical;min-height:90px;line-height:1.7}
-.field .hint{font-size:10px;color:var(--knight-dark);margin-top:6px;letter-spacing:.05em}
+.field .hint{font-size:15px;color:var(--knight-dark);margin-top:6px;letter-spacing:.05em}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:480px){.row2{grid-template-columns:1fr}}
 
@@ -180,8 +180,8 @@ main{
 }
 .type-item:hover{border-color:var(--maroon-mid);background:rgba(57,0,7,0.3)}
 .type-item.selected{border-color:var(--red-bright);background:rgba(139,0,0,0.15)}
-.type-item .tn{font-size:12px;font-weight:500;color:var(--mist);margin-bottom:3px;letter-spacing:.05em}
-.type-item .tp{font-size:10px;color:var(--red-bright);letter-spacing:.08em}
+.type-item .tn{font-size:17px;font-weight:500;color:var(--mist);margin-bottom:3px;letter-spacing:.05em}
+.type-item .tp{font-size:15px;color:var(--red-bright);letter-spacing:.08em}
 
 /* SUBMIT */
 .btn-submit{
@@ -189,7 +189,7 @@ main{
   background:var(--maroon);
   border:1px solid var(--red-bright);
   font-family:'JetBrains Mono', 'Kanit', sans-serif;
-  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  font-size:17px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--mist);cursor:pointer;
   transition:all .2s;margin-top:.5rem;
 }
@@ -203,12 +203,12 @@ main{
   background:rgba(14,14,15,0.6);
 }
 .terms h3{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--red-bright);margin-bottom:1rem;
 }
 .terms ul{list-style:none}
 .terms ul li{
-  font-size:12px;color:var(--knight);
+  font-size:17px;color:var(--knight);
   padding:5px 0;letter-spacing:.03em;
   line-height:1.7;
   display:flex;gap:10px;
@@ -223,24 +223,24 @@ main{
   background:rgba(57,0,7,0.1);
 }
 .success .s-label{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--red-bright);margin-bottom:1.5rem;
 }
 .success h2{
   font-family:'Bebas Neue',sans-serif;
-  font-size:52px;letter-spacing:.05em;color:var(--mist);
+  font-size:57px;letter-spacing:.05em;color:var(--mist);
   margin-bottom:1rem;
 }
 .queue-badge{
   display:inline-block;
   border:1px solid var(--red-bright);
   font-family:'Bebas Neue',sans-serif;
-  font-size:64px;letter-spacing:.1em;color:var(--red-bright);
+  font-size:69px;letter-spacing:.1em;color:var(--red-bright);
   padding:8px 40px;margin:1rem 0 1.5rem;
   background:rgba(139,0,0,0.1);
 }
 .success p{
-  font-size:11px;color:var(--knight);
+  font-size:16px;color:var(--knight);
   letter-spacing:.06em;line-height:2;
   text-transform:uppercase;max-width:360px;margin:0 auto 1.5rem;
 }
@@ -248,7 +248,7 @@ main{
   display:inline-block;padding:12px 32px;
   border:1px solid var(--border-light);
   font-family:'JetBrains Mono', 'Kanit', sans-serif;
-  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:16px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--knight);cursor:pointer;background:transparent;
   transition:all .15s;
 }
@@ -260,7 +260,7 @@ main{
   flex:1;padding:12px 14px;
   background:var(--void);border:1px solid var(--border-light);
   border-right:none;
-  font-family:'JetBrains Mono', 'Kanit', sans-serif;font-size:13px;color:var(--mist);
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;font-size:18px;color:var(--mist);
   outline:none;transition:border-color .15s;
 }
 .search-wrap input:focus{border-color:var(--red-bright)}
@@ -269,7 +269,7 @@ main{
   padding:12px 20px;
   background:var(--maroon);border:1px solid var(--red-bright);
   font-family:'JetBrains Mono', 'Kanit', sans-serif;
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--mist);cursor:pointer;
   transition:all .15s;white-space:nowrap;
 }
@@ -289,12 +289,12 @@ main{
 }
 .order-num{
   font-family:'Bebas Neue',sans-serif;
-  font-size:28px;letter-spacing:.05em;color:var(--mist);
+  font-size:33px;letter-spacing:.05em;color:var(--mist);
 }
 .badge{
   display:inline-flex;align-items:center;gap:6px;
   padding:4px 12px;
-  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.12em;text-transform:uppercase;
   border:1px solid;
 }
 .b-queue{border-color:#4a3800;color:#c9961a;background:rgba(74,56,0,.2)}
@@ -306,28 +306,28 @@ main{
 
 .order-body{padding:1.25rem}
 .order-type{
-  font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  font-size:18px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--mist);margin-bottom:4px;
 }
-.order-detail{font-size:12px;color:var(--knight);margin-bottom:1.25rem;line-height:1.8}
+.order-detail{font-size:17px;color:var(--knight);margin-bottom:1.25rem;line-height:1.8}
 
 .progress-row{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
 .progress-track{flex:1;height:2px;background:var(--border-light)}
 .progress-fill{height:100%;background:var(--red-bright);transition:width .5s ease}
-.progress-pct{font-size:11px;color:var(--red-bright);min-width:32px;text-align:right;letter-spacing:.05em}
+.progress-pct{font-size:16px;color:var(--red-bright);min-width:32px;text-align:right;letter-spacing:.05em}
 
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light)}
 .meta-box{
   padding:10px 14px;background:var(--void);
 }
-.meta-box .mk{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--knight-dark);margin-bottom:3px}
-.meta-box .mv{font-size:13px;color:var(--mist);letter-spacing:.05em}
+.meta-box .mk{font-size:14px;letter-spacing:.15em;text-transform:uppercase;color:var(--knight-dark);margin-bottom:3px}
+.meta-box .mv{font-size:18px;color:var(--mist);letter-spacing:.05em}
 
 .note-box{
   margin-top:12px;padding:10px 14px;
   border-left:2px solid var(--red-bright);
   background:rgba(139,0,0,0.08);
-  font-size:11px;color:var(--knight);
+  font-size:16px;color:var(--knight);
   letter-spacing:.05em;line-height:1.8;
 }
 
@@ -341,21 +341,21 @@ main{
 .qi-left{display:flex;align-items:center;gap:14px}
 .qi-num{
   font-family:'Bebas Neue',sans-serif;
-  font-size:20px;color:var(--red-bright);
+  font-size:25px;color:var(--red-bright);
   min-width:36px;letter-spacing:.05em;
 }
-.qi-name{font-size:13px;color:var(--mist);letter-spacing:.04em}
-.qi-type{font-size:11px;color:var(--knight);letter-spacing:.06em;text-transform:uppercase}
+.qi-name{font-size:18px;color:var(--mist);letter-spacing:.04em}
+.qi-type{font-size:16px;color:var(--knight);letter-spacing:.06em;text-transform:uppercase}
 .empty-state{
   text-align:center;padding:3rem 1rem;
   color:var(--knight-dark);
-  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  font-size:16px;letter-spacing:.1em;text-transform:uppercase;
   line-height:2;
 }
 
 footer{
   text-align:center;padding:2rem 1rem;
-  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  font-size:15px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--border-light);
   border-top:1px solid var(--border);
 }
@@ -575,7 +575,7 @@ function renderOrderCard(o){
     <div class="order-header">
       <div>
         <div class="order-num">#${o.id}</div>
-        <div style="font-size:11px;color:var(--knight);letter-spacing:.06em;margin-top:2px">${o.name} · ${o.contact}</div>
+        <div style="font-size:16px;color:var(--knight);letter-spacing:.06em;margin-top:2px">${o.name} · ${o.contact}</div>
       </div>
       <span class="badge ${s.cls}">${s.label}</span>
     </div>
@@ -603,7 +603,7 @@ function searchById(){
   if(!raw||raw==='000'){el.innerHTML='';return;}
   const found = orders.find(o=>o.id===raw);
   el.innerHTML = found
-    ? `<div style="font-size:10px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found 1 result</div>${renderOrderCard(found)}`
+    ? `<div style="font-size:15px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found 1 result</div>${renderOrderCard(found)}`
     : `<div class="card"><div class="empty-state">// No record found for #${raw}</div></div>`;
 }
 
@@ -613,7 +613,7 @@ function searchByName(){
   if(!q){el.innerHTML='';return;}
   const found = orders.filter(o=>o.name.toLowerCase().includes(q)||o.contact.toLowerCase().includes(q));
   el.innerHTML = found.length
-    ? `<div style="font-size:10px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found ${found.length} result(s)</div>${found.map(renderOrderCard).join('')}`
+    ? `<div style="font-size:15px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found ${found.length} result(s)</div>${found.map(renderOrderCard).join('')}`
     : `<div class="card"><div class="empty-state">// No record found for "${q}"</div></div>`;
 }
 
