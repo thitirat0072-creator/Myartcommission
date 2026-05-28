@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ART COMMISSION</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=Sarabun:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#0E0E0F;
+  --maroon:#390007;
+  --maroon-mid:#5a000f;
+  --red:#8B0000;
+  --red-bright:#C0002A;
+  --mist:#F0F4F5;
+  --knight:#9BA0AB;
+  --knight-dark:#6B7280;
+  --white:#ffffff;
+  --border:#2a1a1e;
+  --border-light:#3d2830;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--void);
+  font-family:'IBM Plex Mono',monospace;
+  color:var(--mist);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* SCANLINE OVERLAY */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);
+  pointer-events:none;z-index:999;
+}
+
+/* HEADER */
+header{
+  position:relative;
+  padding:3rem 2rem 0;
+  border-bottom:1px solid var(--border-light);
+  overflow:hidden;
+}
+.city-bar{
+  display:flex;gap:2.5rem;
+  font-size:11px;letter-spacing:.2em;color:var(--knight);
+  margin-bottom:2.5rem;
+}
+.city-bar span::before{content:'(';color:var(--red-bright)}
+.city-bar span::after{content:')';color:var(--red-bright)}
+
+.header-body{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:flex-end;gap:2rem;
+  padding-bottom:2rem;
+}
+header h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(64px,12vw,110px);
+  line-height:.9;
+  letter-spacing:.02em;
+  color:var(--mist);
+}
+header h1 em{
+  display:block;
+  font-style:normal;
+  color:var(--red-bright);
+  -webkit-text-stroke:0px;
+}
+.header-manifesto{
+  max-width:280px;
+  font-size:10px;
+  line-height:1.8;
+  color:var(--knight);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-left:2px solid var(--maroon-mid);
+  padding-left:1rem;
+}
+.status-line{
+  font-size:10px;letter-spacing:.15em;color:var(--red-bright);
+  text-transform:uppercase;margin-bottom:.5rem;
+  display:flex;align-items:center;gap:8px;
+}
+.status-dot{width:6px;height:6px;background:var(--red-bright);border-radius:50%;animation:blink 1.5s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* TABS */
+.tabs-wrap{
+  display:flex;border-bottom:1px solid var(--border-light);
+}
+.tab-btn{
+  flex:1;padding:16px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  background:transparent;border:none;color:var(--knight);
+  cursor:pointer;transition:all .2s;
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+}
+.tab-btn.active{
+  color:var(--red-bright);
+  border-bottom-color:var(--red-bright);
+}
+.tab-btn:hover:not(.active){color:var(--mist)}
+
+/* MAIN */
+main{
+  max-width:700px;margin:0 auto;
+  padding:2.5rem 1.5rem 5rem;
+}
+.panel{display:none}
+.panel.active{display:block;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* SECTION LABEL */
+.sec-label{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red-bright);margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:12px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border-light)}
+
+/* CARD */
+.card{
+  border:1px solid var(--border-light);
+  background:rgba(57,0,7,0.08);
+  padding:1.5rem;margin-bottom:1.25rem;
+}
+
+/* FORM FIELDS */
+.field{margin-bottom:1.1rem}
+.field:last-child{margin-bottom:0}
+.field label{
+  display:block;
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--knight);margin-bottom:8px;
+}
+.field label .req{color:var(--red-bright);margin-left:2px}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:12px 14px;
+  background:var(--void);
+  border:1px solid var(--border-light);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;color:var(--mist);
+  outline:none;
+  transition:border-color .15s;
+  -webkit-appearance:none;appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--red-bright);
+}
+.field input::placeholder,.field textarea::placeholder{color:var(--knight-dark);font-size:12px}
+.field textarea{resize:vertical;min-height:90px;line-height:1.7}
+.field .hint{font-size:10px;color:var(--knight-dark);margin-top:6px;letter-spacing:.05em}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.row2{grid-template-columns:1fr}}
+
+/* SELECT */
+.field select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239BA0AB' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+  padding-right:36px;cursor:pointer;
+}
+.field select option{background:var(--void);color:var(--mist)}
+
+/* TYPE GRID */
+.type-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));
+  gap:6px;
+}
+.type-item{
+  border:1px solid var(--border-light);
+  padding:12px 10px;cursor:pointer;
+  transition:all .15s;text-align:left;
+  background:var(--void);
+}
+.type-item:hover{border-color:var(--maroon-mid);background:rgba(57,0,7,0.3)}
+.type-item.selected{border-color:var(--red-bright);background:rgba(139,0,0,0.15)}
+.type-item .tn{font-size:12px;font-weight:500;color:var(--mist);margin-bottom:3px;letter-spacing:.05em}
+.type-item .tp{font-size:10px;color:var(--red-bright);letter-spacing:.08em}
+
+/* SUBMIT */
+.btn-submit{
+  width:100%;padding:16px;
+  background:var(--maroon);
+  border:1px solid var(--red-bright);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--mist);cursor:pointer;
+  transition:all .2s;margin-top:.5rem;
+}
+.btn-submit:hover{background:var(--red-bright);color:var(--void)}
+
+/* TERMS */
+.terms{
+  border:1px solid var(--border-light);
+  border-left:3px solid var(--maroon-mid);
+  padding:1.25rem;margin-top:1.5rem;
+  background:rgba(14,14,15,0.6);
+}
+.terms h3{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red-bright);margin-bottom:1rem;
+}
+.terms ul{list-style:none}
+.terms ul li{
+  font-size:12px;color:var(--knight);
+  padding:5px 0;letter-spacing:.03em;
+  line-height:1.7;
+  display:flex;gap:10px;
+}
+.terms ul li::before{content:'—';color:var(--maroon-mid);flex-shrink:0}
+
+/* SUCCESS */
+.success{
+  display:none;
+  border:1px solid var(--border-light);
+  padding:3rem 2rem;text-align:center;
+  background:rgba(57,0,7,0.1);
+}
+.success .s-label{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--red-bright);margin-bottom:1.5rem;
+}
+.success h2{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:52px;letter-spacing:.05em;color:var(--mist);
+  margin-bottom:1rem;
+}
+.queue-badge{
+  display:inline-block;
+  border:1px solid var(--red-bright);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:64px;letter-spacing:.1em;color:var(--red-bright);
+  padding:8px 40px;margin:1rem 0 1.5rem;
+  background:rgba(139,0,0,0.1);
+}
+.success p{
+  font-size:11px;color:var(--knight);
+  letter-spacing:.06em;line-height:2;
+  text-transform:uppercase;max-width:360px;margin:0 auto 1.5rem;
+}
+.btn-ghost{
+  display:inline-block;padding:12px 32px;
+  border:1px solid var(--border-light);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--knight);cursor:pointer;background:transparent;
+  transition:all .15s;
+}
+.btn-ghost:hover{border-color:var(--knight);color:var(--mist)}
+
+/* CHECK */
+.search-wrap{display:flex;gap:0}
+.search-wrap input{
+  flex:1;padding:12px 14px;
+  background:var(--void);border:1px solid var(--border-light);
+  border-right:none;
+  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mist);
+  outline:none;transition:border-color .15s;
+}
+.search-wrap input:focus{border-color:var(--red-bright)}
+.search-wrap input::placeholder{color:var(--knight-dark)}
+.search-wrap button{
+  padding:12px 20px;
+  background:var(--maroon);border:1px solid var(--red-bright);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--mist);cursor:pointer;
+  transition:all .15s;white-space:nowrap;
+}
+.search-wrap button:hover{background:var(--red-bright);color:var(--void)}
+
+/* ORDER CARD */
+.order-card{
+  border:1px solid var(--border-light);
+  margin-bottom:1rem;overflow:hidden;
+}
+.order-header{
+  padding:1rem 1.25rem;
+  border-bottom:1px solid var(--border-light);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:8px;
+  background:rgba(57,0,7,0.12);
+}
+.order-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:28px;letter-spacing:.05em;color:var(--mist);
+}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:4px 12px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid;
+}
+.b-queue{border-color:#4a3800;color:#c9961a;background:rgba(74,56,0,.2)}
+.b-doing{border-color:#0a2a4a;color:#60a5fa;background:rgba(10,42,74,.2)}
+.b-review{border-color:#2e1a5a;color:#a78bfa;background:rgba(46,26,90,.2)}
+.b-fix{border-color:#4a1500;color:#fb923c;background:rgba(74,21,0,.2)}
+.b-done{border-color:#0a3a1a;color:#4ade80;background:rgba(10,58,26,.2)}
+.b-cancel{border-color:#3a0a0a;color:#f87171;background:rgba(58,10,10,.2)}
+
+.order-body{padding:1.25rem}
+.order-type{
+  font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--mist);margin-bottom:4px;
+}
+.order-detail{font-size:12px;color:var(--knight);margin-bottom:1.25rem;line-height:1.8}
+
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:1.25rem}
+.progress-track{flex:1;height:2px;background:var(--border-light)}
+.progress-fill{height:100%;background:var(--red-bright);transition:width .5s ease}
+.progress-pct{font-size:11px;color:var(--red-bright);min-width:32px;text-align:right;letter-spacing:.05em}
+
+.meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-light)}
+.meta-box{
+  padding:10px 14px;background:var(--void);
+}
+.meta-box .mk{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--knight-dark);margin-bottom:3px}
+.meta-box .mv{font-size:13px;color:var(--mist);letter-spacing:.05em}
+
+.note-box{
+  margin-top:12px;padding:10px 14px;
+  border-left:2px solid var(--red-bright);
+  background:rgba(139,0,0,0.08);
+  font-size:11px;color:var(--knight);
+  letter-spacing:.05em;line-height:1.8;
+}
+
+/* QUEUE LIST */
+.queue-list-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 0;border-bottom:1px solid var(--border);
+  gap:8px;flex-wrap:wrap;
+}
+.queue-list-item:last-child{border-bottom:none}
+.qi-left{display:flex;align-items:center;gap:14px}
+.qi-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:20px;color:var(--red-bright);
+  min-width:36px;letter-spacing:.05em;
+}
+.qi-name{font-size:13px;color:var(--mist);letter-spacing:.04em}
+.qi-type{font-size:11px;color:var(--knight);letter-spacing:.06em;text-transform:uppercase}
+.empty-state{
+  text-align:center;padding:3rem 1rem;
+  color:var(--knight-dark);
+  font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  line-height:2;
+}
+
+footer{
+  text-align:center;padding:2rem 1rem;
+  font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--border-light);
+  border-top:1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="city-bar">
+    <span>BKK</span><span>TH</span><span>OPEN</span>
+  </div>
+  <div class="header-body">
+    <div>
+      <div class="status-line"><span class="status-dot"></span>Commission Open</div>
+      <h1>ART<em>COMMISSION</em></h1>
+    </div>
+    <div class="header-manifesto">
+      THREADS AND SEAMS.<br>
+      STITCHED TOGETHER<br>
+      BY VISION AND CRAFT.<br>
+      TENSION AT THE EDGES.<br>
+      — SUBMIT YOUR ORDER.
+    </div>
+  </div>
+</header>
+
+<div class="tabs-wrap">
+  <button class="tab-btn active" onclick="switchTab('book')">(01) ลงคิวงาน</button>
+  <button class="tab-btn" onclick="switchTab('check')">(02) เช็คสถานะ</button>
+</div>
+
+<main>
+
+  <!-- BOOKING -->
+  <div class="panel active" id="panel-book">
+    <div id="form-wrap">
+
+      <div class="card">
+        <div class="sec-label">Client Info</div>
+        <div class="field">
+          <label>ชื่อ / นามแฝง <span class="req">*</span></label>
+          <input type="text" id="name" placeholder="Nana_art / มิน มินตรา">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>ช่องทางติดต่อ <span class="req">*</span></label>
+            <select id="channel">
+              <option value="">— เลือก —</option>
+              <option>Twitter / X</option><option>LINE</option>
+              <option>Discord</option><option>Facebook</option>
+              <option>Instagram</option><option>อื่นๆ</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Username / ID <span class="req">*</span></label>
+            <input type="text" id="contact" placeholder="@username">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-label">Commission Type</div>
+        <div class="type-grid" id="type-grid">
+          <div class="type-item" onclick="selectType(this,'Sketch')"><div class="tn">Sketch</div><div class="tp">฿300+</div></div>
+          <div class="type-item" onclick="selectType(this,'Lineart')"><div class="tn">Lineart</div><div class="tp">฿500+</div></div>
+          <div class="type-item" onclick="selectType(this,'Flat Color')"><div class="tn">Flat Color</div><div class="tp">฿700+</div></div>
+          <div class="type-item" onclick="selectType(this,'Full Color')"><div class="tn">Full Color</div><div class="tp">฿1,200+</div></div>
+          <div class="type-item" onclick="selectType(this,'Full Illustration')"><div class="tn">Full Illust</div><div class="tp">฿2,000+</div></div>
+          <div class="type-item" onclick="selectType(this,'Chibi')"><div class="tn">Chibi</div><div class="tp">฿500+</div></div>
+          <div class="type-item" onclick="selectType(this,'Portrait')"><div class="tn">Portrait</div><div class="tp">฿800+</div></div>
+          <div class="type-item" onclick="selectType(this,'Character Sheet')"><div class="tn">Char Sheet</div><div class="tp">฿2,500+</div></div>
+          <div class="type-item" onclick="selectType(this,'Emote / Icon')"><div class="tn">Emote/Icon</div><div class="tp">฿300+</div></div>
+          <div class="type-item" onclick="selectType(this,'Other')"><div class="tn">Other</div><div class="tp">TBD</div></div>
+        </div>
+        <input type="hidden" id="type-val">
+        <div class="row2" style="margin-top:1rem">
+          <div class="field">
+            <label>จำนวนตัวละคร</label>
+            <select id="chars">
+              <option>1 ตัว</option><option>2 ตัว</option>
+              <option>3 ตัว</option><option>4+ ตัว</option>
+              <option>ไม่มีตัวละคร</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Background</label>
+            <select id="hasbg">
+              <option>ไม่มี bg</option>
+              <option>bg เรียบๆ / สี</option>
+              <option>bg ครบ (ซับซ้อน)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-label">Brief</div>
+        <div class="field">
+          <label>รายละเอียด <span class="req">*</span></label>
+          <textarea id="detail" placeholder="อธิบาย OC / ท่าทาง / อารมณ์ / สไตล์ที่ต้องการ..."></textarea>
+        </div>
+        <div class="field">
+          <label>Reference Link</label>
+          <input type="url" id="ref" placeholder="https://...">
+          <div class="hint">// แนบ ref เพิ่มเติมได้หลังจากยืนยัน slot</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-label">Budget & Timeline</div>
+        <div class="row2">
+          <div class="field">
+            <label>งบประมาณ (฿)</label>
+            <input type="number" id="budget" placeholder="0" min="0">
+          </div>
+          <div class="field">
+            <label>Deadline</label>
+            <input type="date" id="deadline">
+          </div>
+        </div>
+        <div class="field">
+          <label>หมายเหตุ</label>
+          <textarea id="remark" placeholder="ข้อมูลเพิ่มเติม..." style="min-height:70px"></textarea>
+        </div>
+      </div>
+
+      <div class="terms">
+        <h3>// Terms of Service</h3>
+        <ul>
+          <li>มัดจำ 50% ก่อนเริ่มงาน (ยกเว้น Sketch)</li>
+          <li>ชำระส่วนที่เหลือก่อนรับไฟล์สุดท้าย</li>
+          <li>แก้ไขฟรี 2 รอบ — รอบถัดไปคิดเพิ่ม 10%</li>
+          <li>ไม่รับงาน Trace / Copy ผลงานผู้อื่น</li>
+          <li>ยกเลิกได้ก่อนเริ่ม Sketch เท่านั้น (ไม่คืนมัดจำ)</li>
+          <li>ระยะเวลาขึ้นอยู่กับ slot และความซับซ้อนของงาน</li>
+        </ul>
+      </div>
+
+      <button class="btn-submit" onclick="submitBooking()" style="margin-top:1.5rem">
+        — Submit Commission Order —
+      </button>
+
+    </div>
+
+    <div class="success" id="success-box">
+      <div class="s-label">// Order Confirmed</div>
+      <h2>IN THE QUEUE</h2>
+      <p>Your queue number</p>
+      <div class="queue-badge" id="queue-num-display">#001</div>
+      <p>Artist will contact you shortly<br>to confirm details and pricing.</p>
+      <button class="btn-ghost" onclick="resetForm()">+ New Order</button>
+    </div>
+  </div>
+
+  <!-- CHECK -->
+  <div class="panel" id="panel-check">
+
+    <div class="card">
+      <div class="sec-label">Search by Queue No.</div>
+      <div class="search-wrap">
+        <input type="text" id="search-id" placeholder="#001" maxlength="10">
+        <button onclick="searchById()">Search</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="sec-label">Search by Name</div>
+      <div class="search-wrap">
+        <input type="text" id="search-name" placeholder="ชื่อ / username">
+        <button onclick="searchByName()">Search</button>
+      </div>
+    </div>
+
+    <div id="result-area"></div>
+
+    <div class="card">
+      <div class="sec-label">All Orders</div>
+      <div id="queue-list"></div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>// Art Commission — All Slots Are Limited</footer>
+
+<script>
+let orders = [];
+let queueCount = 1;
+let selectedType = '';
+
+const statusMap = {
+  "รอคิว":   {cls:"b-queue",  label:"Queue"},
+  "กำลังทำ": {cls:"b-doing",  label:"In Progress"},
+  "รอตรวจ":  {cls:"b-review", label:"Review"},
+  "แก้ไข":   {cls:"b-fix",    label:"Revision"},
+  "เสร็จแล้ว":{cls:"b-done",  label:"Done"},
+  "ยกเลิก":  {cls:"b-cancel", label:"Cancelled"},
+};
+
+function switchTab(t){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',['book','check'][i]===t));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',['panel-book','panel-check'][i]==='panel-'+t));
+  if(t==='check') renderQueueList();
+}
+
+function selectType(el, val){
+  document.querySelectorAll('.type-item').forEach(i=>i.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedType = val;
+}
+
+function renderOrderCard(o){
+  const s = statusMap[o.status]||statusMap["รอคิว"];
+  const pct = o.progress||0;
+  return `<div class="order-card">
+    <div class="order-header">
+      <div>
+        <div class="order-num">#${o.id}</div>
+        <div style="font-size:11px;color:var(--knight);letter-spacing:.06em;margin-top:2px">${o.name} · ${o.contact}</div>
+      </div>
+      <span class="badge ${s.cls}">${s.label}</span>
+    </div>
+    <div class="order-body">
+      <div class="order-type">${o.type}</div>
+      <div class="order-detail">${o.detail}</div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+        <div class="progress-pct">${pct}%</div>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-box"><div class="mk">Total</div><div class="mv">฿${(o.price||0).toLocaleString()}</div></div>
+        <div class="meta-box"><div class="mk">Deposit Paid</div><div class="mv">฿${(o.deposit||0).toLocaleString()}</div></div>
+        <div class="meta-box"><div class="mk">Remaining</div><div class="mv">฿${((o.price||0)-(o.deposit||0)).toLocaleString()}</div></div>
+        <div class="meta-box"><div class="mk">Deadline</div><div class="mv">${o.deadline||'—'}</div></div>
+      </div>
+      ${o.note?`<div class="note-box">// ${o.note}</div>`:''}
+    </div>
+  </div>`;
+}
+
+function searchById(){
+  const raw = document.getElementById('search-id').value.replace('#','').trim().padStart(3,'0');
+  const el = document.getElementById('result-area');
+  if(!raw||raw==='000'){el.innerHTML='';return;}
+  const found = orders.find(o=>o.id===raw);
+  el.innerHTML = found
+    ? `<div style="font-size:10px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found 1 result</div>${renderOrderCard(found)}`
+    : `<div class="card"><div class="empty-state">// No record found for #${raw}</div></div>`;
+}
+
+function searchByName(){
+  const q = document.getElementById('search-name').value.trim().toLowerCase();
+  const el = document.getElementById('result-area');
+  if(!q){el.innerHTML='';return;}
+  const found = orders.filter(o=>o.name.toLowerCase().includes(q)||o.contact.toLowerCase().includes(q));
+  el.innerHTML = found.length
+    ? `<div style="font-size:10px;color:var(--knight);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">// Found ${found.length} result(s)</div>${found.map(renderOrderCard).join('')}`
+    : `<div class="card"><div class="empty-state">// No record found for "${q}"</div></div>`;
+}
+
+function renderQueueList(){
+  const el = document.getElementById('queue-list');
+  if(!orders.length){
+    el.innerHTML='<div class="empty-state">// No orders yet<br>Queue is empty</div>';
+    return;
+  }
+  el.innerHTML = orders.map(o=>{
+    const s = statusMap[o.status]||statusMap["รอคิว"];
+    return `<div class="queue-list-item">
+      <div class="qi-left">
+        <div class="qi-num">${o.id}</div>
+        <div><div class="qi-name">${o.name}</div><div class="qi-type">${o.type}</div></div>
+      </div>
+      <span class="badge ${s.cls}">${s.label}</span>
+    </div>`;
+  }).join('');
+}
+
+function submitBooking(){
+  const name = document.getElementById('name').value.trim();
+  const channel = document.getElementById('channel').value;
+  const contact = document.getElementById('contact').value.trim();
+  const detail = document.getElementById('detail').value.trim();
+  if(!name||!channel||!contact||!selectedType||!detail){
+    alert('// Please fill all required fields\n— Name, Contact, Type, Brief');
+    return;
+  }
+  const id = String(queueCount).padStart(3,'0');
+  queueCount++;
+  const budget = parseInt(document.getElementById('budget').value)||0;
+  const dl = document.getElementById('deadline').value;
+  const remark = document.getElementById('remark').value.trim();
+  orders.push({
+    id,name,
+    contact:`${channel}: ${contact}`,
+    type:selectedType,
+    detail,
+    status:"รอคิว",
+    progress:0,
+    price:budget,
+    deposit:Math.round(budget*.5),
+    deadline: dl ? dl.replace(/-/g,'/') : '—',
+    note:remark
+  });
+  document.getElementById('queue-num-display').textContent='#'+id;
+  document.getElementById('form-wrap').style.display='none';
+  document.getElementById('success-box').style.display='block';
+}
+
+function resetForm(){
+  ['name','contact','detail','ref','budget','deadline','remark'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.value='';
+  });
+  document.getElementById('channel').value='';
+  selectedType='';
+  document.querySelectorAll('.type-item').forEach(i=>i.classList.remove('selected'));
+  document.getElementById('form-wrap').style.display='block';
+  document.getElementById('success-box').style.display='none';
+}
+
+document.getElementById('search-id').addEventListener('keydown',e=>e.key==='Enter'&&searchById());
+document.getElementById('search-name').addEventListener('keydown',e=>e.key==='Enter'&&searchByName());
+</script>
+</body>
+</html>
