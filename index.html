@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ART COMMISSION</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@300;400;500&family=Sarabun:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Kanit:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <style>
 :root{
   --void:#0E0E0F;
@@ -23,7 +23,7 @@
 html{scroll-behavior:smooth}
 body{
   background:var(--void);
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   color:var(--mist);
   min-height:100vh;
   overflow-x:hidden;
@@ -57,8 +57,9 @@ header{
   padding-bottom:2rem;
 }
 header h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(64px,12vw,110px);
+  font-family:'Montserrat', sans-serif;
+  font-weight:900;
+  font-size:clamp(54px,10vw,90px);
   line-height:.9;
   letter-spacing:.02em;
   color:var(--mist);
@@ -93,7 +94,7 @@ header h1 em{
 }
 .tab-btn{
   flex:1;padding:16px;
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   font-size:11px;letter-spacing:.15em;text-transform:uppercase;
   background:transparent;border:none;color:var(--knight);
   cursor:pointer;transition:all .2s;
@@ -144,7 +145,7 @@ main{
   padding:12px 14px;
   background:var(--void);
   border:1px solid var(--border-light);
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   font-size:13px;color:var(--mist);
   outline:none;
   transition:border-color .15s;
@@ -188,7 +189,7 @@ main{
   width:100%;padding:16px;
   background:var(--maroon);
   border:1px solid var(--red-bright);
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   font-size:12px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--mist);cursor:pointer;
   transition:all .2s;margin-top:.5rem;
@@ -227,14 +228,16 @@ main{
   color:var(--red-bright);margin-bottom:1.5rem;
 }
 .success h2{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Montserrat', sans-serif;
+  font-weight:800;
   font-size:52px;letter-spacing:.05em;color:var(--mist);
   margin-bottom:1rem;
 }
 .queue-badge{
   display:inline-block;
   border:1px solid var(--red-bright);
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Montserrat', sans-serif;
+  font-weight:900;
   font-size:64px;letter-spacing:.1em;color:var(--red-bright);
   padding:8px 40px;margin:1rem 0 1.5rem;
   background:rgba(139,0,0,0.1);
@@ -247,7 +250,7 @@ main{
 .btn-ghost{
   display:inline-block;padding:12px 32px;
   border:1px solid var(--border-light);
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   font-size:11px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--knight);cursor:pointer;background:transparent;
   transition:all .15s;
@@ -260,7 +263,7 @@ main{
   flex:1;padding:12px 14px;
   background:var(--void);border:1px solid var(--border-light);
   border-right:none;
-  font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--mist);
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;font-size:13px;color:var(--mist);
   outline:none;transition:border-color .15s;
 }
 .search-wrap input:focus{border-color:var(--red-bright)}
@@ -268,7 +271,7 @@ main{
 .search-wrap button{
   padding:12px 20px;
   background:var(--maroon);border:1px solid var(--red-bright);
-  font-family:'IBM Plex Mono',monospace;
+  font-family:'JetBrains Mono', 'Kanit', sans-serif;
   font-size:10px;letter-spacing:.15em;text-transform:uppercase;
   color:var(--mist);cursor:pointer;
   transition:all .15s;white-space:nowrap;
@@ -288,7 +291,8 @@ main{
   background:rgba(57,0,7,0.12);
 }
 .order-num{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Montserrat', sans-serif;
+  font-weight:800;
   font-size:28px;letter-spacing:.05em;color:var(--mist);
 }
 .badge{
@@ -340,7 +344,8 @@ main{
 .queue-list-item:last-child{border-bottom:none}
 .qi-left{display:flex;align-items:center;gap:14px}
 .qi-num{
-  font-family:'Bebas Neue',sans-serif;
+  font-family:'Montserrat', sans-serif;
+  font-weight:800;
   font-size:20px;color:var(--red-bright);
   min-width:36px;letter-spacing:.05em;
 }
